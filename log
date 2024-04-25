@@ -82,3 +82,14 @@ Thu 25 Apr 2024 01:21:02 AM UTC:
  tests:  8|3
 total_score: 40/70
 1b7998b
+Thu 25 Apr 2024 01:27:17 AM UTC: 
+ hashmap.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘eraseMap’:
+hashmap.c:76:6: error: suggest explicit braces to avoid ambiguous ‘else’ [-Werror=dangling-else]
+   76 |   if (map->buckets[pos] != NULL)
+      |      ^
+cc1: all warnings being treated as errors
+Compilation failed
+a47bd99

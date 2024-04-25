@@ -45,11 +45,11 @@ void insertMap(HashMap *map, char *key, void *value) {
   if (map->size == map->capacity)
     return;
   long pos = hash(key, map->capacity);
-  if(map->buckets[pos] != NULL){
-    while(map->buckets[pos] != NULL)
+  if (map->buckets[pos] != NULL) {
+    while (map->buckets[pos] != NULL)
       pos = (pos + 1) % map->capacity;
     map->buckets[pos] = createPair(key, value);
-  } else 
+  } else
     map->buckets[pos] = createPair(key, value);
   map->size++;
 }
@@ -62,21 +62,37 @@ HashMap *createMap(long capacity) {
   HashMap *map = (HashMap *)malloc(sizeof(HashMap));
   map->buckets = (Pair **)calloc(capacity, sizeof(Pair *));
   map->capacity = capacity;
-  for(int i=0;i<capacity;++i)
-    map->buckets[i]=NULL;
+  for (int i = 0; i < capacity; ++i)
+    map->buckets[i] = NULL;
   map->size = 0;
   map->current = -1;
   return map;
 }
 
-void eraseMap(HashMap *map, char *key) {}
+void eraseMap(HashMap *map, char *key) {
+  if (map == NULL || key == NULL)
+    return;
+  long pos = hash(key, map->capacity);
+  if (map->buckets[pos] != NULL)
+    if (is_equal(map->buckets[pos]->key, key)) {
+      map->buckets[pos] = NULL;
+      return;
+    } else {
+      while (map->buckets[pos] != NULL) {
+        if (is_equal(map->buckets[pos]->key, key))
+          map->buckets[pos] = NULL;
+        return;
+        pos = (pos + 1) % map->capacity;
+      }
+    }
+}
 
 Pair *searchMap(HashMap *map, char *key) {
   if (map == NULL || key == NULL)
     return NULL;
   long pos = hash(key, map->capacity);
-  while(map->buckets[pos] != NULL) {
-    if(is_equal(map->buckets[pos]->key, key)){
+  while (map->buckets[pos] != NULL) {
+    if (is_equal(map->buckets[pos]->key, key)) {
       map->current = pos;
       return map->buckets[pos];
     }
