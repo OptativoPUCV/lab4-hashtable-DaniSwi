@@ -103,6 +103,25 @@ Pair *searchMap(HashMap *map, char *key) {
   return NULL;
 }
 
-Pair *firstMap(HashMap *map) { return NULL; }
+Pair *firstMap(HashMap *map) {
+  if (map == NULL)
+    return NULL;
+  while (map->current != -1){
+    if (map->buckets[map->current] != NULL)
+      return map->buckets[map->current];
+    ++map->current;
+  }
+  return NULL;
+}
 
-Pair *nextMap(HashMap *map) { return NULL; }
+Pair *nextMap(HashMap *map) {
+  if (map == NULL)
+    return NULL;
+  ++map->current;
+  while (map->current != -1) {
+    if (map->buckets[map->current] != NULL)
+      return map->buckets[map->current];
+    ++map->current;
+  }
+  return NULL;
+}
