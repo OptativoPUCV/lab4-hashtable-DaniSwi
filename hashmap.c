@@ -74,12 +74,13 @@ void eraseMap(HashMap *map, char *key) {
     return;
   long pos = hash(key, map->capacity);
   if (is_equal(map->buckets[pos]->key, key)) {
-    map->buckets[pos] = NULL;
+    map->buckets[pos]->key = NULL;
     return;
   }
   while (map->buckets[pos] != NULL) {
     if (is_equal(map->buckets[pos]->key, key)) {
-      map->buckets[pos] = NULL;
+      map->buckets[pos]->key = NULL;
+      --map->size;
       return;
     }
     pos = (pos + 1) % map->capacity;
