@@ -49,9 +49,9 @@ void insertMap(HashMap *map, char *key, void *value) {
     while(map->buckets[pos] != NULL)
       pos = (pos + 1) % map->capacity;
     map->buckets[pos] = createPair(key, value);
-  } else {
+  } else 
     map->buckets[pos] = createPair(key, value);
-  }
+  map->size++;
 }
 
 void enlarge(HashMap *map) {
