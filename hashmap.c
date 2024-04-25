@@ -77,7 +77,7 @@ void eraseMap(HashMap *map, char *key) {
     map->buckets[pos] = NULL;
     return;
   } else {
-    while (map->buckets[pos] != NULL) {
+      for (int i = 0; i < map->capacity; ++i) {
       if (is_equal(map->buckets[pos]->key, key)) {
         map->buckets[pos] = NULL;
         return;
