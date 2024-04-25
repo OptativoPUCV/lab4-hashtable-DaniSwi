@@ -50,7 +50,7 @@ HashMap *createMap(long capacity) {
   map->buckets = (Pair **)calloc(capacity, sizeof(Pair *));
   map->capacity = capacity;
   for(int i=0;i<capacity;++i) 
-    map->buckets = NULL;
+    map->buckets[i]=NULL;
   return map;
 }
 
