@@ -122,7 +122,9 @@ Pair *nextMap(HashMap *map) {
     if(map->buckets[i]!=NULL && map->buckets[i]->key!=NULL){
       if(i==map->current){
         map->current = (map->current+1)%map->capacity;
-        return map->buckets[i];
+        while(map->buckets[map->current]==NULL)
+          map->current = (map->current+1)%map->capacity;
+        return map->buckets[map->current];
       }
     }
   }
