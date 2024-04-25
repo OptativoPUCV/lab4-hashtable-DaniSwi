@@ -119,10 +119,13 @@ Pair *nextMap(HashMap *map) {
   if (map == NULL)
     return NULL;
   ++map->current;
-  while (map->current != -1) {
-    if (map->buckets[map->current] != NULL)
-      return map->buckets[map->current];
-    ++map->current;
+  for(long i=0;i<map->capacity;i++){
+    if(map->buckets[i]!=NULL && map->buckets[i]->key!=NULL){
+      if(i==map->current){
+        map->current = i+1;
+        return map->buckets[i];
+      }
+    }
   }
   return NULL;
 }
