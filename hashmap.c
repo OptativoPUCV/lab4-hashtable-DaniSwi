@@ -80,6 +80,7 @@ Pair *searchMap(HashMap *map, char *key) {
       return map->buckets[pos];
     pos = (pos + 1) % map->capacity;
   }
+  map->current = pos;
   return NULL;
 }
 
