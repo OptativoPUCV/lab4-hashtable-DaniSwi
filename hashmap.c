@@ -107,7 +107,7 @@ Pair *firstMap(HashMap *map) {
   if (map == NULL)
     return NULL;
   for(long i=0;i<map->capacity;i++){
-    if(map->buckets[i]!=NULL && map->buckets[i]->key!=NULL){
+    if(map->buckets[i]!=NULL){
       map->current = i;
       return map->buckets[i];
     }
