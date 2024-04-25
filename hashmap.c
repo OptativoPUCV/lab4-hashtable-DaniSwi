@@ -121,7 +121,6 @@ Pair *nextMap(HashMap *map) {
   for(long i=0;i<map->capacity;i++){
     if(map->buckets[i]!=NULL && map->buckets[i]->key!=NULL){
       if(i==map->current){
-        map->current = i+1;
         return map->buckets[i];
       }
     }
