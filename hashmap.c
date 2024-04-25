@@ -76,13 +76,13 @@ void eraseMap(HashMap *map, char *key) {
   if (is_equal(map->buckets[pos]->key, key)) {
     map->buckets[pos] = NULL;
     return;
-  } else {
-      for (int i = 0; i < map->capacity; ++i) {
-      if (is_equal(map->buckets[pos]->key, key)) {
-        map->buckets[pos] = NULL;
-        return;
-      } pos = (pos + 1) % map->capacity;
+  }
+  while (map->buckets[pos] != NULL) {
+    if (is_equal(map->buckets[pos]->key, key)) {
+      map->buckets[pos] = NULL;
+      return;
     }
+    pos = (pos + 1) % map->capacity;
   }
 }
 
