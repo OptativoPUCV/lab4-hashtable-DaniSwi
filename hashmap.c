@@ -126,7 +126,6 @@ Pair *nextMap(HashMap *map) {
           map->current = (map->current+1)%map->capacity;
         return map->buckets[map->current];
       }
-      return NULL;
     }
   }
   return NULL;
